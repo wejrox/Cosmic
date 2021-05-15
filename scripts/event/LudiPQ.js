@@ -25,7 +25,7 @@
 
 var isPq = true;
 var minPlayers = 5, maxPlayers = 6;
-var minLevel = 35, maxLevel = 50;
+var minLevel = 35, maxLevel = 200;
 var entryMap = 922010100;
 var exitMap = 922010000;
 var recruitMap = 221024500;
@@ -75,12 +75,84 @@ function setEventExclusives(eim) {
 }
 
 function setEventRewards(eim) {
-    var itemSet, itemQty, evLevel, expStages;
+    var singleItems, multipleItems, singleItemQty, multipleItemQty, evLevel, expStages;
 
     evLevel = 1;    //Rewards at clear PQ
-    itemSet = [2040602, 2040802, 2040002, 2040402, 2040505, 2040502, 2040601, 2044501, 2044701, 2044601, 2041019, 2041016, 2041022, 2041013, 2041007, 2043301, 2040301, 2040801, 2040001, 2040004, 2040504, 2040501, 2040513, 2043101, 2044201, 2044401, 2040701, 2044301, 2043801, 2040401, 2043701, 2040803, 2000003, 2000002, 2000004, 2000006, 2000005, 2022000, 2001001, 2001002, 2022003, 2001000, 2020014, 2020015, 4003000, 1102003, 1102004, 1102000, 1102002, 1102001, 1102011, 1102012, 1102013, 1102014, 1032011, 1032012, 1032013, 1032002, 1032008, 1032011, 2070011, 4010003, 4010000, 4010006, 4010002, 4010005, 4010004, 4010001, 4020001, 4020002, 4020008, 4020007, 4020003, 4020000, 4020004, 4020005, 4020006];
-    itemQty = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 85, 85, 10, 60, 2, 20, 15, 15, 20, 15, 10, 5, 35, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 10, 10, 6, 10, 10, 10, 10, 10, 10, 4, 4, 10, 10, 10, 10, 10];
-    eim.setEventRewards(evLevel, itemSet, itemQty);
+    singleItems = [
+        // Armor
+        1050018, // Blue Sauna Robe (M)
+        1051017, // Red Sauna Robe (F)
+        1002026, // Brown Bamboo hat
+        1002089, // Green Bamboo hat
+        1002090, // Blue bamboo hat
+        1002518, // Maple bandana blue
+        1002510, // Maple hat [3]
+        1102041, // Pink Adventurer Cape
+        1102042, // Purple Adventurer Cape
+        // Weapons
+        1452022, // Maple Soul Searcher Bow
+        1382012, // Maple Lama Staff
+        1442053, // Pink Flower Tube (Polearm)
+        1092030, // Maple Shield
+        1472032, // Maple Kandayo Claw
+        1332025, // Maple Wagner Dagger
+        1462019, // Maple Crossbow
+        1492021, // Maple Storm Pistol
+        // Rings
+        1112405, // Lilin's Ring
+        // Earrings
+        1032028, // Red emerald earrings
+        // Face
+        1012098, // Maple Leaf (str)
+        1012101, // Maple Leaf (dex)
+        1012102, // Maple Leaf (int)
+        1012103, // Maple Leaf (luk)
+        // Throwing Knives
+        // 2070003, // Kumbi
+        2070004, // Tobi
+        2070005, // Steely
+        // 2070006, // Ilbi
+        // 2070016, // Crystal ilbi
+        // 2070018, // Balanced fury
+        // Forehead
+        1022088, // Archeologist glasses
+        // Setup
+        3010061, // Underneath the Maple Tree (Chair)
+    ];
+    singleItemQty = singleItems.map(() => 1)
+
+    multipleItems = [
+        // Use
+        2022117, // Maple syrup
+        2340000, // White scroll
+        2044503, // GM 100% bow scroll
+        2043803, // GM 100% staff scroll
+        2044403, // GM 100% polearm scroll
+        2044703, // GM 100% claw scroll
+        2043303, // GM 100% dagger scroll
+        2044603, // GM 100% crossbow scroll
+        2040541, // 15% overall str
+        2040527, // 15% overall int
+        2040523, // 15% overall dex
+        2040529, // 15% overall luk
+    ];
+    multipleItemQty = [
+        10,
+        50,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+    ];
+    // itemSet = [2040602, 2040802, 2040002, 2040402, 2040505, 2040502, 2040601, 2044501, 2044701, 2044601, 2041019, 2041016, 2041022, 2041013, 2041007, 2043301, 2040301, 2040801, 2040001, 2040004, 2040504, 2040501, 2040513, 2043101, 2044201, 2044401, 2040701, 2044301, 2043801, 2040401, 2043701, 2040803, 2000003, 2000002, 2000004, 2000006, 2000005, 2022000, 2001001, 2001002, 2022003, 2001000, 2020014, 2020015, 4003000, 1102003, 1102004, 1102000, 1102002, 1102001, 1102011, 1102012, 1102013, 1102014, 1032011, 1032012, 1032013, 1032002, 1032008, 1032011, 2070011, 4010003, 4010000, 4010006, 4010002, 4010005, 4010004, 4010001, 4020001, 4020002, 4020008, 4020007, 4020003, 4020000, 4020004, 4020005, 4020006];
+    // itemQty = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 85, 85, 10, 60, 2, 20, 15, 15, 20, 15, 10, 5, 35, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 10, 10, 6, 10, 10, 10, 10, 10, 10, 4, 4, 10, 10, 10, 10, 10];
+    eim.setEventRewards(evLevel, singleItems.concat(multipleItems), singleItemQty.concat(multipleItemQty));
 
     expStages = [210, 2520, 2940, 3360, 3770, 0, 4620, 5040, 5950];    //bonus exp given on CLEAR stage signal
     eim.setEventClearStageExp(expStages);
