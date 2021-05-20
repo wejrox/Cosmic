@@ -11162,7 +11162,7 @@ public class MapleCharacter extends AbstractMapleCharacterObject {
             return;
         }
 
-        // Reset all the quest ids so the people can do job advancements again.
+        // Reset all the quest ids so the player can do job advancements again.
         for (int id : GameConstants.JOB_ADV_QUEST_IDS) {
             forfeitQuest(id);
         }
