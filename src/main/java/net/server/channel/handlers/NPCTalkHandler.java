@@ -25,6 +25,7 @@ import client.Client;
 import client.processor.npc.DueyProcessor;
 import config.YamlConfig;
 import constants.id.NpcId;
+import extensions.rebirth.RebirthHandler;
 import net.AbstractPacketHandler;
 import net.packet.InPacket;
 import org.slf4j.Logger;
@@ -66,12 +67,13 @@ public final class NPCTalkHandler extends AbstractPacketHandler {
                 }
 
                 // Custom handling to reduce the amount of scripts needed.
+                RebirthHandler rebirth = new RebirthHandler(c.getPlayer());
                 if (npc.getId() >= NpcId.GACHAPON_MIN && npc.getId() <= NpcId.GACHAPON_MAX) {
                     NPCScriptManager.getInstance().start(c, npc.getId(), "gachapon", null);
                 } else if (npc.getName().endsWith("Maple TV")) {
                     NPCScriptManager.getInstance().start(c, npc.getId(), "mapleTV", null);
-                } else if (YamlConfig.config.server.USE_REBIRTH_SYSTEM && npc.getId() == YamlConfig.config.server.REBIRTH_NPC_ID) {
-                    NPCScriptManager.getInstance().start(c, npc.getId(), "rebirth", null);
+                } else if (rebirth.isRebirthNpc(npc.getId())) {
+                    rebirth.performRebirthNpcInteraction(npc.getId());
                 } else {
                     boolean hasNpcScript = NPCScriptManager.getInstance().start(c, npc.getId(), oid, null);
                     if (!hasNpcScript) {

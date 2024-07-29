@@ -25,6 +25,11 @@
     @author wejrox
 */
 function start() {
-    cm.sendOk("... I came from distant planes to assist the fight against the #rBlack Magician#k. Right now I search my master, have you seen him?");
+    if (Packages.config.YamlConfig.config.server.USE_ENABLE_CUSTOM_NPC_SCRIPT) {
+        cm.openShopNPC(9270066);
+    } else {
+        cm.sendOk("... I came from distant planes to assist in the fight against the #rBlack Magician#k. Right now I search for my master, have you seen him?");
+    }
+
     cm.dispose();
 }
