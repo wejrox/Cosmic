@@ -15,7 +15,7 @@ public class CommandsExtension {
     public static Map<String, Class<? extends Command>> lv0Commands = Map.ofEntries(
         entry("jobadvancement", JobAdvancementCommand.class),
         entry("unlockquestskills", FourthJobQuestSkillsCommand.class),
-        entry("shop", ShopCommand.class),
+//        entry("shop", ShopCommand.class),
         entry("goto", GotoCommand.class),
         entry("rebirth", RebirthCommand.class)
     );
