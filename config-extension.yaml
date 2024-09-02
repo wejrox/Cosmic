@@ -1,3 +1,4 @@
 custom:
-  USE_REBIRTH_SYSTEM: true #Flag to enable/disable rebirth system.
-  REBIRTH_NPC_ID: 9200000  #ID of the NPC that should be replaced with the rebirth mechanic.
+  USE_REBIRTH_SYSTEM: true # Flag to enable/disable rebirth system.
+  REBIRTH_NPC_ID: 9200000  # ID of the NPC that should be replaced with the rebirth mechanic.
+  USE_PERFECT_PLAYER_SCROLL: true # Flag to make all player scrolls succeed.
