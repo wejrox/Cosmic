@@ -80,74 +80,117 @@ function setEventRewards(eim) {
     evLevel = 1;    //Rewards at clear PQ
     singleItems = [
         // Armor
-        1050100, // Bathrobe for men
-        1051098, // Bathrobe for women
+        // 1050100, // Bathrobe for men
+        // 1051098, // Bathrobe for women
         1002026, // Brown Bamboo hat
         1002089, // Green Bamboo hat
         1002090, // Blue bamboo hat
         1002518, // Maple bandana blue
         1002510, // Maple hat [3]
+        // Capes
         1102082, // Ragged black cape
+        1102041, // Pink Adventurer Cape (W.Att)
+        1102042, // Purple Adventurer Cape (M.Att)
         // Weapons
-        1452016, // Maple Bow
-        1382009, // Maple Staff
-        1442053, // Pink Flower Tube (Polearm)
-        1092030, // Maple Shield
-        1472030, // Maple Claw
-        1332025, // Maple Wagner
-        1462014, // Maple Crow
-        1492020, // Maple Gun
+        // 1452016, // Maple Bow
+        // 1382009, // Maple Staff
+        1382039, // Maple Wisdom Staff
+        // 1442053, // Pink Flower Tube (Polearm)
+        1442051, // Maple Karstan
+        // 1092030, // Maple Shield
+        1092045, // Maple Magician shield
+        // 1472030, // Maple Claw
+        1472032, // Maple Kandayo
+        1472055, // Maple Skanda
+        // 1332025, // Maple Wagner
+        // 1462014, // Maple Crow
+        // 1492020, // Maple Gun
+        1432040, // Maple Soul Spear
         // Rings
         1112405, // Lilin's Ring
         // Earrings
         1032028, // Red emerald earrings
         // Face
-        1012098, // Maple Leaf (str)
-        1012101, // Maple Leaf (dex)
-        1012102, // Maple Leaf (int)
-        1012103, // Maple Leaf (luk)
+        // 1012098, // Maple Leaf (str)
+        // 1012101, // Maple Leaf (dex)
+        // 1012102, // Maple Leaf (int)
+        // 1012103, // Maple Leaf (luk)
         // Throwing Knives
-        2070003, // Kumbi
-        2070004, // Tobi
+        // 2070003, // Kumbi
+        // 2070004, // Tobi
         // 2070005, // Steely
         // 2070006, // Ilbi
-        // 2070016, // Crystal ilbi
+        2070016, // Crystal ilbi
         // 2070018, // Balanced fury
+        // Necklace
+        1122014, // Silver Deputy Star
         // Forehead
         1022088, // Archeologist glasses
         // Setup
-        3010061, // Underneath the Maple Tree (Chair)
+        // 3010061, // Underneath the Maple Tree (Chair)
     ];
     singleItemQty = singleItems.map(() => 1)
 
     multipleItems = [
         // Use
-        2022117, // Maple syrup
+        2049102, // Maple Syrup 100%
         2340000, // White scroll
-        2044503, // GM 100% bow scroll
+        // 2044503, // GM 100% bow scroll
         2043803, // GM 100% staff scroll
         2044403, // GM 100% polearm scroll
         2044703, // GM 100% claw scroll
-        2043303, // GM 100% dagger scroll
-        2044603, // GM 100% crossbow scroll
+        // 2043303, // GM 100% dagger scroll
+        // 2044603, // GM 100% crossbow scroll
         2040541, // 15% overall str
         2040527, // 15% overall int
         2040523, // 15% overall dex
         2040529, // 15% overall luk
+
+        2040920, // 10% Scroll for Shield for Magic Att.
+        2040026, // 10% Scroll for Helmet for INT
+        2040314, // 10% Scroll for Earring for INT
+        2040816, // 10% Scroll for Gloves for Magic Att.
+        2041053, // 15% Scroll for Cape for INT
+
+        2040105, // 10% Scroll for Face Accessory for Avoidability
+        2040807, // 100% Scroll for Gloves for ATT
+        2040331, // 10% Scroll for Earring for LUK
+        2040760, // 10% Scroll for Shoes for ATT
+
+        2040016, // 10% Scroll for Helmet for Accuracy
+        2040318, // 10% Scroll for Earring for DEX
+
+        2049100, // 60% Chaos Scroll
     ];
     multipleItemQty = [
         10,
         50,
+        // 10,
+        10,
+        10,
+        10,
+        // 10,
+        // 10,
+        10,
+        10,
+        10,
+        10,
+
         10,
         10,
         10,
         10,
         10,
+
         10,
         10,
         10,
         10,
+
         10,
+        10,
+
+        20
     ];
     // itemSet = [2040505, 2040514, 2040502, 2040002, 2040602, 2040402, 2040802, 1032009, 1032004, 1032005, 1032006, 1032007, 1032010, 1032002, 1002026, 1002089, 1002090, 2000003, 2000001, 2000002, 2000006, 2022003, 2022000, 2000004, 4003000, 4010000, 4010001, 4010002, 4010003, 4010004, 4010005, 4010006, 4010007, 4020000, 4020001, 4020002, 4020003, 4020004, 4020005, 4020006, 4020007, 4020008];
     // itemQty = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 80, 80, 80, 50, 5, 15, 15, 30, 15, 15, 15, 15, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 3, 3];
