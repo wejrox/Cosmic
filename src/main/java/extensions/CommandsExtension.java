@@ -4,6 +4,7 @@ import client.command.Command;
 import extensions.commands.FourthJobQuestSkillsCommand;
 import extensions.commands.JobAdvancementCommand;
 import extensions.commands.RebirthCommand;
+import extensions.commands.RefundStat;
 import extensions.commands.SetPlayerStat;
 import extensions.commands.ShopCommand;
 import client.command.commands.gm1.GotoCommand;
@@ -18,7 +19,8 @@ public class CommandsExtension {
         entry("unlockquestskills", FourthJobQuestSkillsCommand.class),
 //        entry("shop", ShopCommand.class),
         entry("goto", GotoCommand.class),
-        entry("rebirth", RebirthCommand.class)
+        entry("rebirth", RebirthCommand.class),
+        entry("refundstat", RefundStat.class)
     );
     public static Map<String, Class<? extends Command>> lv1Commands = Map.ofEntries(
     );

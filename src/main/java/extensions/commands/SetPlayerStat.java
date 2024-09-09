@@ -14,7 +14,7 @@ public class SetPlayerStat extends Command {
     public void execute(Client c, String[] params) {
         Character player = c.getPlayer();
         if (params.length < 3) {
-            player.yellowMessage("Syntax: !setplayerstat <playername> [str, dex, int, luk] <value>");
+            player.yellowMessage("Syntax: !setplayerstat <playername> [str, dex, int, luk, ap, sp] <value>");
             return;
         }
 
@@ -24,11 +24,11 @@ public class SetPlayerStat extends Command {
             return;
         }
 
-        StatSelection selection;
+        Stat targetStat;
         try {
-            selection = StatSelection.valueOf(params[1]);
-        } catch (IllegalArgumentException e) {
-            player.yellowMessage("Error: Stat is not recognised.");
+            targetStat = getStat(params[1]);
+        } catch (IllegalStateException e) {
+            player.yellowMessage("Error: " + e.getMessage());
             return;
         }
 
@@ -46,12 +46,43 @@ public class SetPlayerStat extends Command {
             return;
         }
 
-        Stat targetStat = Stat.valueOf(selection.name());
-        target.updateSingleStat(targetStat, statValue);
+        setStat(player, targetStat, statValue);
     }
 
-    // Limited to the main 4 stats.
-    private enum StatSelection {
-        STR, DEX, INT, LUK
+    private void setStat(Character player, Stat requestedStat, int value) {
+        switch (requestedStat) {
+            case Stat.STR:
+                player.updateStr(value);
+                break;
+            case Stat.DEX:
+                player.updateDex(value);
+                break;
+            case Stat.INT:
+                player.updateInt(value);
+                break;
+            case Stat.LUK:
+                player.updateLuk(value);
+                break;
+            case Stat.AVAILABLEAP:
+                player.changeRemainingAp(value, false);
+                break;
+            case Stat.AVAILABLESP:
+                player.updateRemainingSp(value);
+            default:
+                throw new IllegalStateException("Unsupported stat requested: " + requestedStat);
+        }
+    }
+
+    private Stat getStat(String requestedStat) {
+        return switch (requestedStat.toLowerCase()) {
+            case "str": yield Stat.STR;
+            case "dex": yield Stat.DEX;
+            case "int": yield Stat.INT;
+            case "luk": yield Stat.LUK;
+            case "ap": yield Stat.AVAILABLEAP;
+            case "sp": yield Stat.AVAILABLESP;
+            default:
+                throw new IllegalStateException("Unsupported stat requested: " + requestedStat);
+        };
     }
 }
