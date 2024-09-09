@@ -115,9 +115,26 @@ public enum Job {
         }
     }
 
-    public boolean isA(Job basejob) {  // thanks Steve (kaito1410) for pointing out an improvement here
-        int basebranch = basejob.getId() / 10;
-        return (getId() / 10 == basebranch && getId() >= basejob.getId()) || (basebranch % 10 == 0 && getId() / 100 == basejob.getId() / 100);
+    /**
+     * Checks if the provided base job is somewhere further or at the class tree of the provided job.
+     * e.g. given a magician base job, a cleric is a magician, and a bishop is also a magician.
+     * e.g. given a cleric base job, a bishop is also a cleric, but a magician is not.
+     * This doesn't work for starter classes such as beginner and noblesse. See the starter class method instead.
+     *
+     * @param baseJob Base job that this job should be on the same path with.
+     * @return whether the jobs align.
+     */
+    public boolean isA(Job baseJob) {  // thanks Steve (kaito1410) for pointing out an improvement here
+        int basebranch = baseJob.getId() / 10;
+        boolean sameJobExtension = getId() / 10 == basebranch;
+        boolean furtherThanTheBase = getId() >= baseJob.getId();
+
+        boolean baseIsARootBranch = basebranch % 10 == 0;
+        boolean sameJobBranch = getId() / 100 == baseJob.getId() / 100;
+
+        boolean furtherInTheSameJob = sameJobExtension && furtherThanTheBase;
+        boolean directJobDescendant = baseIsARootBranch && sameJobBranch;
+        return furtherInTheSameJob || directJobDescendant;
     }
 
     public int getJobNiche() {
@@ -131,5 +148,24 @@ public enum Job {
         case 4: THIEF;
         case 5: PIRATE;
         */
+    }
+
+    /**
+     * Gets the class that would be considered the beginner class for this job.
+     * Explorers use beginner, and are under 1000.
+     * Cygnus Knights use noblesse, and are between 1000 and 2000.
+     * Aran and Evan use legend, and are between 2000 and 3000.
+     * @return the job which this class would be if it had just started the game.
+     */
+    public Job getStarterClass() {
+        if (getId() < 1000) {
+            return Job.BEGINNER;
+        } else if (getId() < 2000) {
+            return Job.NOBLESSE;
+        } else if (getId() < 3000) {
+            return Job.LEGEND;
+        } else {
+            return null;
+        }
     }
 }
