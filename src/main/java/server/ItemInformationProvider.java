@@ -39,6 +39,7 @@ import constants.inventory.ItemConstants;
 import constants.skills.Assassin;
 import constants.skills.Gunslinger;
 import constants.skills.NightWalker;
+import extensions.ConfigExtension;
 import net.server.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -1086,7 +1087,7 @@ public class ItemInformationProvider {
                         break;
                 }
 
-                if (assertGM || rollSuccessChance(prop)) {
+                if (assertGM || ConfigExtension.config.custom.USE_PERFECT_PLAYER_SCROLL || rollSuccessChance(prop)) {
                     short flag = nEquip.getFlag();
                     switch (scrollId) {
                         case ItemId.SPIKES_SCROLL:

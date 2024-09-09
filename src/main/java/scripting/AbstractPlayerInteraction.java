@@ -32,6 +32,7 @@ import constants.id.ItemId;
 import constants.id.MapId;
 import constants.id.NpcId;
 import constants.inventory.ItemConstants;
+import extensions.rebirth.RebirthHandler;
 import net.server.Server;
 import net.server.guild.Guild;
 import net.server.world.Party;
@@ -63,6 +64,10 @@ import static java.util.concurrent.TimeUnit.DAYS;
 public class AbstractPlayerInteraction {
 
     public Client c;
+
+    public RebirthHandler getRebirthHandler() {
+        return new RebirthHandler(getChar());
+    }
 
     public AbstractPlayerInteraction(Client c) {
         this.c = c;

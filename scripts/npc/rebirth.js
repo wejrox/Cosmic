@@ -28,8 +28,8 @@ var jobId = 0;
 
 function start() {
     status = -1;
-    const YamlConfig = Java.type('config.YamlConfig');
-    if (!YamlConfig.config.server.USE_REBIRTH_SYSTEM) {
+    const ConfigExtension = Java.type('extensions.ConfigExtension');
+    if (!ConfigExtension.config.custom.USE_REBIRTH_SYSTEM) {
         cm.sendOk("Rebirths aren't enabled on this server, how did you get here?");
         cm.dispose();
         return;
@@ -45,7 +45,7 @@ function action(mode, type, selection) {
         return;
     }
     if (status === 0) {
-        cm.sendNext("Come to me when you want to be reborn again. You currently have a total of #r" + cm.getChar().getReborns() + " #krebirths.");
+        cm.sendNext("Come to me when you want to be reborn again. You currently have a total of #r" + cm.getRebirthHandler().getRebirths() + " #krebirths.");
     } else if (status === 1) {
         cm.sendSimple("What do you want me to do today: \r\n \r\n #L0##bI want to be reborn!#l \r\n #L1##bNothing for now...#k#l");
     } else if (status === 2) {
@@ -72,8 +72,8 @@ function action(mode, type, selection) {
         cm.sendYesNo("Are you sure you want to be reborn as a " + job + "?");
     }
     else if (status === 4 && type === 1) {
-        cm.getChar().executeRebornAsId(jobId);
-        cm.sendOk("You have now been reborn. That's a total of #r" + cm.getChar().getReborns() + "#k rebirths");
+        cm.getRebirthHandler().executeRebirthAsId(jobId);
+        cm.sendOk("You have now been reborn. That's a total of #r" + cm.getRebirthHandler().getRebirths() + "#k rebirths");
         cm.dispose();
     }
 }

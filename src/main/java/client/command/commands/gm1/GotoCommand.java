@@ -28,11 +28,7 @@ import client.Client;
 import client.command.Command;
 import constants.game.GameConstants;
 import constants.id.NpcId;
-import server.maps.FieldLimit;
-import server.maps.MapFactory;
-import server.maps.MapleMap;
-import server.maps.MiniDungeonInfo;
-import server.maps.Portal;
+import server.maps.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,7 +69,7 @@ public class GotoCommand extends Command {
     public static String GOTO_AREAS_INFO = "";
 
     private static void sortGotoEntries(List<Entry<String, Integer>> listEntries) {
-        listEntries.sort((e1, e2) -> e1.getValue().compareTo(e2.getValue()));
+        listEntries.sort(Entry.comparingByValue());
     }
 
     @Override
@@ -81,9 +77,7 @@ public class GotoCommand extends Command {
         Character player = c.getPlayer();
         if (params.length < 1) {
             String sendStr = "Syntax: #b@goto <map name>#k. Available areas:\r\n\r\n#rTowns:#k\r\n" + GOTO_TOWNS_INFO;
-            if (player.isGM()) {
-                sendStr += ("\r\n#rAreas:#k\r\n" + GOTO_AREAS_INFO);
-            }
+            sendStr += ("\r\n#rAreas:#k\r\n" + GOTO_AREAS_INFO);
 
             player.getAbstractPlayerInteraction().npcTalk(NpcId.SPINEL, sendStr);
             return;
