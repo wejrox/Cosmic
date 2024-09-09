@@ -482,8 +482,13 @@ public class GameConstants {
         }
     }
 
+    /**
+     * All job SP seems to be stored in position 0, Evan from second job has an sp table so it needs to be handled properly.
+     *
+     * @param job Job ID to get the skill book of.
+     */
     public static int getSkillBook(final int job) {
-        if (job >= 2210 && job <= 2218) {
+        if (job >= Job.EVAN2.getId() && job <= Job.EVAN10.getId()) {
             return job - 2209;
         }
         return 0;
