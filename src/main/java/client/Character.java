@@ -6836,6 +6836,14 @@ public class Character extends AbstractCharacterObject {
         setRemainingSp(sps);
     }
 
+    /**
+     * Removes any sp that hasn't been assigned. Useful for rebirthing since otherwise you can't assign stats.
+     */
+    public void clearAllSp() {
+        int[] emptySps = new int[remainingSp.length];
+        setRemainingSp(emptySps);
+    }
+
     public int getRemainingSp() {
         return getRemainingSp(job.getId()); //default
     }
@@ -9670,6 +9678,13 @@ public class Character extends AbstractCharacterObject {
         }
     }
 
+    /**
+     * Updates the progress for a quest. For example, eating rogers apple would apply the infoNumber for rogers apple to 1.
+     *
+     * @param id Quest id to apply the update to.
+     * @param infoNumber ID of the thing that the quest is tracking.
+     * @param progress New progress value that the player has achieved.
+     */
     public void setQuestProgress(int id, int infoNumber, String progress) {
         Quest q = Quest.getInstance(id);
         QuestStatus qs = getQuest(q);

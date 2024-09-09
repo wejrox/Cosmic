@@ -39,6 +39,7 @@ import client.inventory.Pet;
 import client.keybind.KeyBinding;
 import config.YamlConfig;
 import constants.game.GameConstants;
+import extensions.rebirth.RebirthHandler;
 import net.AbstractPacketHandler;
 import net.packet.InPacket;
 import net.server.PlayerBuffValueHolder;
@@ -447,6 +448,9 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
                                 entry -> Integer.parseInt(entry.getKey()),
                                 Entry::getValue
                         ));
+
+                RebirthHandler rebirth = new RebirthHandler(c.getPlayer());
+                rebirth.scriptNpcWhenEnabled(npcsIds);
 
                 c.sendPacket(PacketCreator.setNPCScriptable(npcsIds));
             }
